@@ -1,0 +1,90 @@
+@import "../global/fonts";
+
+
+/* -----------  colors --------------------*/
+$pure-black: #000;
+$main-text: rgb(12, 12, 12);
+$btn-background: rgb(31, 31, 31);
+$primary-text: rgb(108, 108, 108);
+$secondary-text: rgb(162, 162, 162);
+$btn-light: rgb(213, 211, 211);
+$background-complex: rgb(245, 237, 237);
+$btn-def-background: #f7f7f7;
+$light_blue: #AADAFE;
+$blue: #0093E9;
+$blue-gradient: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+$azure: #80D0C7;
+$modal-backdrop: rgba(0, 0, 0, 0.6);
+$line: #f57c03;
+$error: #bd3c04;
+$background-error: linear-gradient(to right, #ff5e62, #ff9966);
+$grey-gradient: linear-gradient(165deg, rgb(82, 80, 115) 0%, rgba(240, 240, 240, 0) 50%);
+$bg-purple-blue: #7d82ef;
+$bg-purple: rgb(90,86,170, 0.2);
+$bg-purple-dark: rgb(90,86,170);
+$bg-purple-gradient: linear-gradient(338deg, rgba(90,86,170,1) 35%, rgba(114,72,144,0.9136029411764706) 70%, rgba(141,53,104,1) 100%);
+$bg-border: rgb(125, 55, 145);
+$text-purple: #1b1d38;
+
+
+$shadow-box:
+rgba(0, 0, 0, 0.004) 0px 0.783403px 0.783403px 0px,
+rgba(0, 0, 0, 0.01) 0px 1.92107px 1.92107px 0px,
+rgba(0, 0, 0, 0.024) 0px 3.63429px 3.63429px 0px,
+rgba(0, 0, 0, 0.04) 0px 6.35486px 6.35486px 0px,
+rgba(0, 0, 0, 0.07) 0px 11.0474px 11.0474px 0px,
+rgba(0, 0, 0, 0.125) 0px 20.2497px 20.2497px 0px,
+rgba(0, 0, 0, 0.25) 0px 40px 40px 0px;
+
+$shadow-box-hovered:
+        rgba(0, 0, 0, 0.004) 0px 0.583403px 0.583403px 0px,
+        rgba(0, 0, 0, 0.01) 0px 1.52107px 2.52107px 0px,
+        rgba(0, 0, 0, 0.024) 0px 2.63429px 3.63429px 0px,
+        rgba(0, 0, 0, 0.04) 0px 4.35486px 5.35486px 0px,
+        rgba(0, 0, 0, 0.07) 0px 9.0474px 12.0474px 5px,
+        rgba(0, 0, 0, 0.125) 0px 10.2497px 13.2497px 0px,
+        rgba(0, 0, 0, 0.25) 0px 10px 10px 0px;
+
+$header-box-shadow:
+0.1px 0.4px 1.4px rgba(0, 0, 0, 0.103),
+0.4px 1.2px 3.4px rgba(0, 0, 0, 0.143),
+0.8px 2.6px 6.4px rgba(0, 0, 0, 0.168),
+1.6px 5.1px 11.4px rgba(0, 0, 0, 0.189),
+3.1px 9.7px 21.3px rgba(0, 0, 0, 0.216),
+7px 22px 51px rgba(0, 0, 0, 0.29);
+
+$shadow-btn-small: 2px 2px 9px rgba(0, 0, 0, 0.21);
+
+$box-shadow-right:
+3px 2.3px 1.9px rgba(0, 0, 0, 0.018),
+7px 5.4px 4.4px rgba(0, 0, 0, 0.027),
+12.6px 9.7px 7.8px rgba(0, 0, 0, 0.033),
+20.9px 16.1px 13px rgba(0, 0, 0, 0.039),
+34.4px 26.5px 21.4px rgba(0, 0, 0, 0.045),
+60.1px 46.2px 37.4px rgba(0, 0, 0, 0.053),
+130px 100px 81px rgba(0, 0, 0, 0.07);
+/* ------------ Font families -------------*/
+$flaviotte-regular: "Flaviotte", serif;
+$flaviotte-semibold: "Flaviotte semibold", serif;
+$flaviotte-bold: "Flaviotte bold", serif;
+/*-------- Font sizes: Desktop & Tablet ------*/
+$text-size-s: 12px;
+$text-size-m: 16px;
+$text-size-l: 20px;
+$text-size-xl: 22px;
+$text-size-xxl: 28px;
+
+/* ------------ Breakpoints --------------- */
+$breakpoint-mobile: 320px;
+$breakpoint-tablet: 640px;
+$breakpoint-desktop: 1200px;
+
+/* ------------ transition --------------- */
+$transition: .12s ease-in-out;
+$transition-header: .4s ease-in-out;
+
+//--------------- font sizes --------------
+$font-size-s: 12px;
+$font-size-m: 16px;
+$font-size-l: 20px;
+$font-size-xl: 22px;

@@ -1,0 +1,86 @@
+@import '../../styles/abstracts/variables';
+@import "../../styles/abstracts/mixins";
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+
+}
+
+.search .input {
+  background-color: transparent;
+  outline: 0;
+  border: 5px solid $bg-purple-dark;
+  border-radius: 25px;
+  box-shadow: $shadow-box;
+  font-size: 18px;
+  padding: 15px;
+  height: 50px;
+  width: 50px;
+  transition: width 0.5s ease;
+  cursor: pointer;
+}
+
+.search .input:focus {
+  outline: none;
+}
+
+.search .input::placeholder {
+  opacity: 0;
+}
+
+.search.active .input {
+  width: 250px;
+  border-radius: 25px;
+  color: $primary-text;
+  text-transform: capitalize;
+
+
+  caret-color: $bg-purple-dark;
+  //animation: blink-caret 1s step-end infinite;
+}
+
+
+.search.active .input::placeholder {
+  opacity: 1;
+}
+
+.reset {
+  border: 0;
+  background: transparent;
+  padding: 15px 5px;
+  transform: rotate(45deg) translateY(35px) translateX(5px);
+}
+
+.handle {
+  border: 0;
+  width: 30px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: $bg-purple-dark;
+  box-shadow: $shadow-box;
+}
+
+.search.active .reset {
+  transform: rotate(-45deg) translateY(10px) translateX(10px);
+  cursor: pointer;
+}
+
+.search .handle:after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: $bg-purple-dark;
+  transition: all 0.3s ease;
+  box-shadow: $shadow-box;
+}
+
+.search.active .handle:after {
+  transform: rotate(90deg);
+  transition: all 0.3s ease;
+  box-shadow: $shadow-box;
+}

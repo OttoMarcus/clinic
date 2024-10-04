@@ -1,0 +1,94 @@
+@import "../../../styles/abstracts/mixins";
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/global/base";
+
+.itemDetailsContainer {
+  @include flex-center;
+  flex-direction: column;
+}
+
+.patientDescriptionContainer {
+  @include flex-between;
+  width: 100%;
+  flex-direction: row;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+
+.addressWrapper {
+  @include flex-start;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addressGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: 1fr;
+  justify-items: start;
+  align-items: center;
+  grid-gap: 10px;
+  font-weight: 600;
+}
+
+.values {
+  font-weight: initial;
+  //color: $primary-text;
+}
+
+.iconsContacts {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  grid-auto-rows: auto;
+  grid-gap: 16px;
+  justify-items: start;
+  height: 100%;
+  width: 100%;
+  text-transform: lowercase;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  text-align: start;
+}
+
+
+.tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: $btn-background;
+  color: $btn-light;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -70px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  box-shadow: $shadow-box-hovered;
+}
+
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.notes {
+  width: 440px;
+  padding: 10px;
+  text-align: start;
+  bottom: -90px;
+}

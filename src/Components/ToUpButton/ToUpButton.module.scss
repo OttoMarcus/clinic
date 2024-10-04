@@ -1,0 +1,16 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+
+
+.arrowNorm {
+  position: fixed;
+  bottom: 85px;
+  right: 50px;
+  transition: $transition-header;
+  opacity: 1;
+}
+
+.arrowActive {
+  transform: scale(0.01) translate(30px, -200px);
+  opacity: 0;
+}

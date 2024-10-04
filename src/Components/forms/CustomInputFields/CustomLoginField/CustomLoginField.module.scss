@@ -1,0 +1,49 @@
+@import '../../../../styles/abstracts/variables';
+@import '../../../../styles/abstracts/mixins';
+
+.customLoginField {
+  position: relative;
+  width: 100%;
+  height: 35px;
+  margin-bottom: 36px;
+}
+
+.customLoginInput {
+  width: 250px;
+  height: 35px;
+  border: 1px solid $secondary-text;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: $text-size-m;
+  text-align: center;
+  background: $primary-text;
+  margin-left: 10px;
+
+  @media only screen and (min-device-width: $breakpoint-tablet) {
+    margin-left: 25px;
+  }
+}
+
+.errorLogin {
+  position: absolute;
+  text-transform: initial;
+  bottom: -20px;
+  right: 10px;
+  color: $error;
+  font-size: $text-size-s;
+}
+
+.errorFieldLogin {
+  border: 1px solid $error;
+  background: $btn-light;
+  color: $error;
+}
+
+.labelLogin {
+  display: inline-block;
+  justify-content: flex-end;
+  width: 100px;
+  text-align: right;
+  font-weight: 600;
+}
+

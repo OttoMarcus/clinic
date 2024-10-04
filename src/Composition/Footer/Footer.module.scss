@@ -1,0 +1,52 @@
+@import '../../styles/abstracts/mixins';
+@import '../../styles/global/fonts';
+@import '../../styles/abstracts/variables';
+@import '../../styles/global/base';
+
+.footerWrapper {
+  @include flex-center;
+  flex-direction: column;
+  width: 100%;
+  height: 150px;
+  background-color: $btn-light;
+
+  @media only screen and (min-device-width: $breakpoint-tablet) {
+    height: 80px;
+  }
+}
+
+.contentWrapper {
+  @include flex-between;
+  flex-direction: column;
+  width: 100%;
+
+  @media only screen and (min-device-width: $breakpoint-tablet) {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: start;
+  }
+
+  & > * {
+    font-weight: bold;
+    color: $btn-background;
+    transition: $transition;
+
+    &:hover {
+      color: $main-text;
+    }
+  }
+}
+
+.produced {
+  margin-top: 16px;
+  color: $primary-text;
+  font-size: $text-size-s;
+
+  a {
+    text-decoration: underline;
+  }
+
+  @media only screen and (min-device-width: $breakpoint-tablet) {
+    margin-top: 0;
+  }
+}

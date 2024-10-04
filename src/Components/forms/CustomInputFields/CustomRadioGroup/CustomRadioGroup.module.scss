@@ -1,0 +1,72 @@
+@import '../../../../styles/abstracts/variables';
+@import '../../../../styles/abstracts/mixins';
+
+.customRadioGroupWrapper {
+    @include flex-center;
+    flex-direction: column;
+    width: 100%;
+  position: relative;
+}
+
+.checkBoxWrapper {
+  @include flex-end;
+  flex-direction: row;
+  width: 80%;
+}
+
+.radioBtns {
+  @include flex-between;
+  width: 100%;
+  height: 35px;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  border: 2px solid $primary-text;
+  border-radius: 5px;
+  color: $btn-def-background;
+  background: linear-gradient(to left, $bg-purple-blue, $primary-text) padding-box;
+}
+
+.customLabel {
+  display: block;
+  justify-content: flex-end;
+  width: 90%;
+  text-align: right;
+  font-weight: 700;
+}
+
+//.circle {
+//  width: 15px;
+//  height: 15px;
+//}
+
+.radioInput {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  padding: 3px;
+
+  //&:active {
+  // transform: scale(.5);
+  //}
+}
+
+.radioLabel {
+  @include flex-center;
+  color: $btn-def-background;
+  width: 30%;
+  transition: $transition;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    font-weight: 600;
+  }
+}
+
+.asterisk {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: $error;
+}

@@ -1,0 +1,55 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+@import "../../styles/global/base";
+
+.pageContainer {
+    @include flex-center;
+    width: 100%;
+    flex-direction: column;
+    padding: 0;
+}
+
+.itemWrapper {
+    @include flex-between;
+    flex-direction: column;
+    padding: 55px 10px 10px 10px;
+    border-radius: 16px;
+
+
+    @media only screen and (max-device-width: $breakpoint-tablet) {
+        padding: 10px;
+    }
+}
+
+.titleContainer {
+    @include flex-center;
+    position: fixed;
+    top: 0;
+    height: 150px;
+    padding: 10px;
+    margin-bottom: 5px;
+    background: $background-complex;
+    opacity: .9;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.title {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-gap: 7px;
+    font-size: $font-size-m;
+    font-weight: 600;
+    width: 700px;
+    color: $primary-text;
+
+
+    @media only screen and (min-device-width: $breakpoint-tablet) {
+        grid-gap: 45px;
+    }
+}
+
+.customLoader {
+    @include customLoader;
+}

@@ -1,0 +1,19 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/abstracts/mixins";
+
+
+.cardLabel {
+  @include flex-center;
+  //height: 25px;
+  width: auto;
+  padding: 0 10px;
+  font-size: $font-size-m;
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  z-index: 1;
+  border-bottom: 1px solid $main-text;
+  border-right: 1px solid $main-text;
+  transition: $transition;
+}
+

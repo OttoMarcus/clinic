@@ -1,0 +1,21 @@
+@import "../../../styles/abstracts/variables";
+
+.formLogin {
+    flex-direction: column;
+    font-family: $flaviotte-bold;
+    font-size: $text-size-l;
+    margin-top: 30px;
+}
+
+.eyeWrapper {
+    position: absolute;
+    top: 195px;
+    right: 45px;
+}
+
+.clearFields {
+    position: absolute;
+    top: 125px;
+    right: 45px;
+    cursor: pointer;
+}

@@ -1,0 +1,74 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixins';
+
+.menu {
+  position: absolute;
+  top: 70px;
+  left: 60px;
+  width: 225px;
+  padding: 20px 0;
+  background: $main-text;
+  border-radius: 0 16px;
+  box-shadow: $shadow-box;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: $transition-header;
+
+  @media only screen and (min-device-width: $breakpoint-tablet) and (max-device-width: $breakpoint-desktop ){
+    left: -170px;
+    top: 100px;
+    border-radius: 16px 0;
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+}
+
+.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.menuItem {
+  @include flex-center;
+  position: relative;
+  margin: 16px 0;
+  color: $btn-light;
+  font-size: $text-size-l;
+  text-transform: uppercase;
+
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 65px;
+    bottom: -5px;
+    width: 100px;
+    height: 2px;
+    background: $line;
+    transform: scaleX(0);
+    transition: $transition;
+  }
+
+  &:hover {
+    color: $btn-def-background;
+
+    &:after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.linkItem {
+  color: inherit;
+}
+
+.activeLink {
+  color: $line;
+  cursor: not-allowed;
+}

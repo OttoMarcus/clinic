@@ -1,0 +1,40 @@
+@import '../../../styles/abstracts/mixins';
+@import '../../../styles/abstracts/variables';
+
+.editVisitForm {
+    @include flex-center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btnGreyWide {
+    background-color: $btn-light;
+    width: 225px;
+
+    &:hover {
+        box-shadow: $shadow-box-hovered;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+        transform: translateY(0);
+    }
+}
+
+.btnBlackWide {
+    color: $btn-def-background;
+    background-color: $btn-background;
+    width: 225px;
+    box-shadow: $shadow-box;
+
+    &:hover {
+        box-shadow: $shadow-box-hovered;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        box-shadow: none;
+        transform: scale(.96, .96);
+    }
+}

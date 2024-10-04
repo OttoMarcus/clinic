@@ -1,93 +1,147 @@
-# clinic_happy_frontend
+# React + Vite
+установлені пакети:
+"vite-plugin-svgr"
+"eslint"
+"prettier"
+"sass"
+"vite-plugin-sass"
+"react-router-dom"
+'classnames'
+"react-error-boundary"
+"formik"
+"Yup"
+"axios"
+"react-table"
+"redux"
+"react-redux"
+"@reduxjs/toolkit"
+"uuid"
+"npm install json-server --save-dev" - Moc server для проекту, поки не буде створений backend. 
+"lodash.debounce"
+"react-number-format"
+
+Встановлені шрифти:
+Flaviotte
+
+У проекті використані Хуки:
+- memo. Для мемоїзації та оптимізації рендеру компонентів;
+- useContext.LanguagesContext Глобальний стейт для зміни мови. У нашому проекті 2 мови - EN та UA. Tранскриптор у файлі translation;
+- useContext.ActiveBurger Глобальний стейт для відслідковування стану бургера та його зміни 
+  через кастомний хук useBurger;
+- useScroll - кастомний хук, що змінює швидкість скролу на елементі. Застосований на DoctorPage;
+- useSpecializations - кастомний хук, для отримання спеціалазацій лікарів
 
 
+Шаблонізоване вікно Modal, де воно перевикористане з різними наборами компонентів.
+Створена контрольована форма входу через модальне вікно. Опції з візувалізацією та приховуванням паролю, очистка полів.
 
-## Getting started
+Для побудови табличних данних використалась бібліотека react-table, вона дає змогу фільтрації, пагінації
+Реалізоване сортування стовбців за зростанням та спаданням
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+При заповнені данних використовується шаблонне модальне вікно, в яке передається форма з використанням бібліотеки Formik.
+Formik бібліотека провалідована бібліотекою Yup. Кнопка 'Submit' disabled до поки не буде провалідована вся форма. Це досягнуто за допомогою 
+Render Props техніки, де в якості пропсів можна передати не тільки jsx а також ф-цію. В данном випадку це формік-обєкт, який відрендерено як функцію, через що в нього зявляється ряд властивостей ф-ції
+у яких ми можемо відокремити властивість isValid та оперувати до неї. RenderProps вбудовано у Formik бібліотеці.
+  Також використані кастомні input багатоцільового використання. 
+Винесення кнопки Submit з Formik у  батьківський компонент реалізував за допомогою хука useRef, залишаючи посилання на submit у formik, а логіку переніс  батьківський компонент.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Moc server був створений для імітації серверної частини. Для нього в дерикторії ./public/API був створений db.json із набором початкових
+данних для doctorList, patientList та CreateVisit. Для запуску - "npm run server". Наразі Moc Server генерує id для доданих елементів. В подальшому при підключенні
+БД та бекенду, потрібно проконтролювати **чи генеруються id на стороні БЕКУ!!!**
 
-## Add your files
+Для оптмізації рендерингу були  використані хуки: memo, useContext
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/OttoMarcus/clinic_happy_frontend.git
-git branch -M main
-git push -uf origin main
-```
+Вам потрібно створити сторінку, де Секретарка зможе створювати картки, що описують заплановані візити до лікарів.
 
-## Integrate with your tools
+На сторінці повинні бути:
 
-- [ ] [Set up project integrations](https://gitlab.com/OttoMarcus/clinic_happy_frontend/-/settings/integrations)
+Header (шапка) сторінки:
+у лівому верхньому кутку – логотип. Можна взяти будь-який
+у правому кутку – Кнопка "Вхід". Після успішної авторизації вона має змінюватися на Кнопку "Створити візит".
+Під Header – форма для фільтрації візитів. У цій формі має бути 3 поля:
+пошук за заголовком/вмістом візиту
+пошук за статусом (Open/Done) (візит пройшов чи ще ні)
+терміновість візиту (High, Normal, Low)
+Під формою фільтрів – список створених візитів.
+Командна робота
+На цьому проекті всі студенти поділені на групи по три особи. Студенти можуть розподіляти між собою завдання самостійно. При здачі проекту необхідно у файлі Readme.md вказати, хто виконував якусь частину завдання.
 
-## Collaborate with your team
+Технічні вимоги
+При першому відвідуванні користувачем сторінки, на дошці має бути напис No items have been added. Цей же напис має бути, якщо у користувача немає жодної доданої картки (наприклад, він їх все видалив).
+На кліку на кнопку Вхід з'являється модальне вікно, в якому користувач вводить свій email та пароль. Якщо він вірний – користувачеві на сторінці виводиться список раніше створених візитів.
+По кліку на кнопку Створити візит з'являється модальне вікно, в якому можна створити нову картку.
+Для створення класів потрібно використовувати синтаксис class із ES6.
+Для AJAX запитів можна використовувати fetch або axios.
+Після виконання будь-яких запитів AJAX, сторінка не повинна перезавантажуватися. При додаванні/видаленні картки та інших подібних операціях із сервера не повинен заново завантажуватися весь список карток. Необхідно використовувати дані з відповіді сервера та Javascript для оновлення інформації на сторінці.
+При оновленні сторінки або її закритті раніше додані нотатки не повинні пропадати.
+Бажано поділити проект на модулі за допомогою ES6 modules.
+Модальне вікно "Створити візит"
+У модальному вікні повинні бути:
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+Випадаючий список (select) з вибором лікаря. Залежно від обраного лікаря, під цим списком будуть з'являтися поля, які потрібно дозаповнити для візиту до цього лікаря.
+У списку має бути три опції - Кардіолог, Стоматолог, Терапевт.
+Після вибору лікаря зі списку, під ним повинні з'явитися поля для запису до цього лікаря. Декілька полів є однаковими для всіх трьох докторів:
+мета візиту
+короткий опис візиту
+дропдаун - терміновість (звичайна, пріоритетна, невідкладна)
+ПІБ
+Також кожен з лікарів має свої унікальні поля для заповнення. Якщо вибрано опцію Кардіолог, додатково з'являються такі поля для введення інформації:
+звичайний тиск
+Індекс маси тіла
+перенесені захворювання серцево-судинної системи
+вік
+Якщо вибрано опцію Стоматолог, додатково необхідно заповнити:
+дата останнього відвідування
+Якщо вибрано опцію Терапевт, додатково необхідно заповнити:
+вік
+Кнопка Створити. При натисканні на кнопку надсилається AJAX запит на відповідну адресу, і якщо у відповіді надійшла інформація про новостворену картку - створюється картка у Дошці візитів на сторінці, модальне вікно закривається.
+Кнопка Закрити - закриває модальне вікно без збереження інформації та створення картки. По кліку на область поза модальним вікном - модальне вікно також закривається.
+Усі поля вводу, незалежно від вибраної опції, крім поля для додаткових коментарів, є обов'язковими для введення даних. Валідацію на коректність даних робити необов'язково.
+Картка, що описує візит
+Картка, яка створюється по кліку, з'являється на дошці завдань. Це має виглядати приблизно так:
 
-## Test and Deploy
+інтерфейс
 
-Use the built-in continuous integration in GitLab.
+У ній мають бути:
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+ПІБ, які були введені під час створення картки
+Лікар, до якого людина записана на прийом
+Кнопка Показати більше. На кліку на неї картка розширюється, і з'являється решта інформації, яка була введена під час створення візиту
+Кнопка Редагувати. При натисканні на неї замість текстового вмісту картки з'являється форма, де можна відредагувати введені поля. Така ж, як у модальному вікні під час створення картки
+Іконка з хрестиком у верхньому правому кутку, при натисканні на яку картку буде видалено
+Фільтри візитів
+Фільтр карток (поле input для введення тексту пошуку за заголовком або описом візиту, фільтр по статусу, по пріоритету) вам потрібно робити на фронт-енді - тобто при зміні value будь-якого елемента форми (вибраний пункт у списку, що було введено щось в input) ви фільтруєте список раніше отриманих з сервера карток, і відображаєте на екрані нову інформацію.
 
-***
+За принципом роботи система має бути схожою на фільтри в інтернет-магазинах (наприклад, зліва тут).
 
-# Editing this README
+Класи
+У JavaScript коді обов'язково мають бути такі класи:
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+клас Modal (модальне вікно);
+клас Visit (що описує загальні для всіх візитів до будь-якого лікаря поля та методи);
+дочірні класи VisitDentist, VisitCardiologist, VisitTherapist;
+Методи та властивості кожного класу вам потрібно продумати самостійно. При необхідності ви можете додавати також інші класи.
 
-## Suggestions for a good README
+Вимоги до реалізації
+Дизайн може бути будь-який, але він має бути.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+AJAX частина
+Вся необхідна документація по взаємодії з сервером AJAX знаходиться тут.
 
-## Name
-Choose a self-explaining name for your project.
+Необов'язкове завдання підвищеної складності
+При створенні картки візиту виконувати валідацію коректності введених даних. Правила для валідації можна придумати самостійно (наприклад, звичайний тиск повинен бути числом і перебувати в діапазоні від 50 до 160)
+Додати можливість користувачеві переміщувати картки на дошці методом Drag&Drop. Такі маніпуляції з карткою не впливають на місце розташування інших карток. Після перетягування картки не потрібно "запам'ятовувати" її нове місце розташування. При перезавантаженні сторінки вона може повернутися на початкове місце
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Backend
+установлені пакети:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+node.js,
+express,
+cors,
+mongoose,
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+В проекті я використовую базу данних MongoDB.
+Структура розроблена по принципу трьох рівневої архітектури ()

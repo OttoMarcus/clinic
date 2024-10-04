@@ -1,0 +1,34 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+
+
+.btnSearch {
+  background-color: $line;
+  filter: sepia(30%);
+
+  &:hover {
+    filter: sepia(0%);
+  }
+}
+
+.searchPatientWrapper {
+  width: 100%;
+}
+
+.createNewPatient {
+  @include flex-center;
+
+
+  & > a {
+    font-size: $font-size-m;
+    font-style: oblique;
+    color: $bg-purple-dark;
+    font-weight: 700;
+    margin: 1em 0 -15px;
+    transition: $transition;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

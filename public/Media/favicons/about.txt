@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Mooli
+- Font Author: Copyright 2012 The Mooli Project Authors (https://github.com/googlefonts/mooliFont)
+- Font Source: https://fonts.gstatic.com/s/mooli/v1/-F6_fjJpLyk1bYPBBG7YpzlJ.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

@@ -1,0 +1,66 @@
+@import "../ModalDefault/Modal.module";
+@import "../../../styles/abstracts/variables";
+
+.legend {
+  width: 100%;
+  text-align: center;
+}
+
+.login {
+  flex-direction: column;
+  font-family: $flaviotte-bold;
+  font-size: $text-size-l;
+
+  label {
+    display: inline-block;
+
+    width: 100px;
+  }
+
+  input {
+    width: 250px;
+    height: 35px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: $text-size-m;
+
+    @media only screen and (min-device-width: $breakpoint-tablet) {
+      margin-left: 25px;
+    }
+  }
+}
+
+legend {
+  font-weight: bolder;
+}
+
+.inputContainer {
+  margin: 30px;
+  position: relative;
+
+}
+
+.eyeContainer {
+  position: absolute;
+    top: 3px;
+    right: -35px;
+
+  @media only screen and (max-device-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.easer {
+  position: absolute;
+  top: 147px;
+  right: 58px;
+
+  @media only screen and (max-device-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.initBackdrop {
+  background-color: $blue;
+  background-image: linear-gradient(160deg, $blue 0%, $azure 100%);
+}

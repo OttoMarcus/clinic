@@ -1,0 +1,9 @@
+{
+    "icons": [
+        { "src": "public/Media/favicons/favicon-16x16.png", "type": "image/png", "sizes": "16x16"},
+        { "src": "public/Media/favicons/favicon-32x32.png", "type": "image/png", "sizes": "32x32"},
+        { "src": "public/Media/favicons/apple-touch-icon.png", "type": "image/png", "sizes": "180x180"},
+        { "src": "public/Media/favicons/android-chrome-192x192.png", "type": "image/png", "sizes": "192x192"},
+        { "src": "public/Media/favicons/android-chrome-512x512.png", "type": "image/png", "sizes": "512x512"}
+    ]
+}

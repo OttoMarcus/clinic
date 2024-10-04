@@ -1,0 +1,61 @@
+@import '../../../../styles/abstracts/variables';
+@import '../../../../styles/abstracts/mixins';
+
+.customField {
+  position: relative;
+  width: 80%;
+  height: 35px;
+  margin-bottom: 36px;
+}
+
+.error {
+  position: absolute;
+  text-transform: initial;
+  top: 0;
+  left: 4%;
+  color: $error;
+}
+
+.errorField {
+  border: 1px solid $error !important;
+  background: $btn-light !important;
+  color: $error;
+}
+
+.customLabel {
+  display: block;
+  justify-content: flex-end;
+  width: 94%;
+  text-align: right;
+  font-weight: 700;
+}
+
+.customInput {
+  width: 100%;
+  height: 35px;
+  border: 1px solid $secondary-text;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: $text-size-m;
+  text-align: center;
+  background: $primary-text;
+
+  &::placeholder {
+    color: $btn-def-background; /* Задає колір тексту */
+    font-style: italic; /* Робить текст курсивним */
+    font-size: 14px; /* Розмір шрифту */
+    opacity: 0.5; /* Встановлює прозорість тексту */
+  }
+}
+
+span {
+  display: none;
+}
+
+.asterisk {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: $error;
+}

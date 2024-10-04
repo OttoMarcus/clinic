@@ -1,0 +1,63 @@
+@import '../../../../styles/abstracts/variables';
+@import '../../../../styles/abstracts/mixins';
+
+
+.customSelectField {
+  position: relative;
+  width: 80%;
+  height: 35px;
+  margin-bottom: 36px;
+}
+
+.selectField {
+  width:100%;
+  height: 100%;
+  border: 1px solid $secondary-text;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: $text-size-m;
+  text-align: center;
+  background: $primary-text;
+
+}
+
+option {
+  border-radius: 7px;
+  text-transform: capitalize;
+
+  &:focus {
+    transform: translateX(10px);
+  }
+}
+
+.errorSelectableInput {
+  position: absolute;
+  text-transform: initial;
+  top: 0;
+  left: 10px;
+  color: $error;
+}
+
+.errorSelectField {
+  border: 1px solid $error;
+}
+
+.labelSelectableInput {
+  display: block;
+  justify-content: flex-end;
+  width: 94%;
+  text-align: right;
+  font-weight: 700;
+}
+
+span {
+  display: none;
+}
+
+.asteriskSelectable {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: $error;
+}

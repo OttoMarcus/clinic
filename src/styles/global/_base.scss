@@ -1,0 +1,61 @@
+@import '../abstracts/variables';
+@import "../abstracts/mixins";
+
+:root {
+  line-height: 1.5;
+  color-scheme: light dark;
+  color: $main-text;
+  background-color: $background-complex;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+body {
+  font-family: $flaviotte-regular;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  .content-wrapper {
+    @include flex-center;
+    flex: 1 1 0;
+    margin: 80px 0 20px;
+
+    @media only screen and (min-device-width: $breakpoint-tablet) {
+      margin: 100px 0 35px;
+    }
+  }
+}
+
+.container {
+  padding: 0 16px;
+  width: 100%;
+  max-width: $breakpoint-desktop;
+  margin: 0 auto;
+
+  /*-----------------  Tablet ---------------------*/
+  @media only screen and (min-device-width: $breakpoint-tablet) {
+    padding: 0 24px;
+  }
+  /*----------------- Desktop ---------------------*/
+  @media only screen and (min-device-width: $breakpoint-desktop) {
+    padding: 0 32px;
+  }
+}

@@ -1,0 +1,327 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+
+
+.cardWrapper {
+  width: 190px;
+  height: 250px;
+  border-radius: 20px;
+  cursor: pointer;
+  -webkit-transition: 1000ms all;
+  transition: 1000ms all;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid $primary-text;
+  box-shadow: $shadow-box;
+
+  //  &:hover .specializationLabel {
+  //    transform: translateX(150px) perspective(-1000px) ;
+  //    padding: 0 15px;
+  //    font-size: $font-size-l;
+  //  }
+  //
+  //  &:hover .nameLabel {
+  //    transform: translateY(150px) perspective(-1000px);
+  //    //padding: 0 15px;
+  //    //font-size: $font-size-l;
+  //  }
+  //&:hover .urgencyLabel {
+  //  transform: translateX(150px) perspective(-1000px);
+  //  //padding: 0 15px;
+  //  //font-size: $font-size-l;
+  //}
+}
+
+.activeCard {
+  transform: perspective(1500px) rotateY(-80deg) translateX(-15px);
+  border-right: 20px double $main-text;
+  box-shadow: $box-shadow-right;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  background-color: $bg-purple-blue;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  object-position: center;
+  clip-path: polygon(0 0, 100% 0, 100% 87%, 0 73%);
+  filter: sepia(45%);
+  border-radius: 20px;
+  transition: $transition-header;
+
+  &:hover {
+    filter: sepia(10%);
+  }
+}
+
+.imgSpecLink {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
+}
+
+.visitDate {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 160px;
+  height: 30px;
+  //transform: rotate(15deg);
+  z-index: 3;
+  font-size: $font-size-l;
+  color: $btn-background;
+}
+
+.urgent {
+  background-color: #efec64;  /* fallback for old browsers */
+  background-image: linear-gradient(310deg, #e4e26c 0%, #f1dddf 100%);
+}
+
+.priority {
+  background-color: #a2d561;  /* fallback for old browsers */
+  background-image: linear-gradient(310deg, #b0d681 0%, #d7f1eb 100%);
+}
+
+.regular {
+  background-color: #d9c8ce;  /* fallback for old browsers */
+  background-image: linear-gradient(310deg, #d9c8ce 0%, #B5FFFC 100%);
+}
+
+.isDeleting {
+  background: #ff9966;  /* fallback for old browsers */
+  background: $background-error /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.specializationLabel {
+  top: 100px !important;
+}
+
+.nameLabel {
+  top: 60px !important;
+}
+
+.urgencyLabel {
+  top: 20px !important;
+}
+
+.cardContainer {
+  transition: $transition-header;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $bg-purple-blue;
+  border-radius: 20px;
+
+  &:hover {
+    box-shadow: $shadow-box-hovered;
+    filter: contrast(110%);
+  }
+}
+
+.contentWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  //background: white;
+}
+
+.cardFrame {
+  @include flex-between;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid $btn-def-background;
+}
+
+.X {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+
+  &:hover {
+    color: $error;
+  }
+}
+
+.bookWrapper {
+  width: 100%;
+  @include flex-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: $font-size-s;
+}
+
+.bookName {
+  max-width: 80%;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 5px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: $btn-background;
+  text-align: center;
+
+  &::after {
+    content: '';
+    width: 165px;
+    position: absolute;
+    bottom: 0;
+    left: -25px;
+    right: 0;
+    height: 1px;
+    background-color: $background-complex;
+  }
+}
+
+.bookDescript {
+  text-decoration: underline;
+}
+
+.contentShadow {
+  box-shadow: $shadow-box;
+}
+
+.addInfoDetail {
+  font-weight: 700;
+}
+
+.userBtn{
+  @include flex-between;
+  flex-direction: column;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+.userEdit {
+  width: 85%;
+  height: auto;
+  border: 1px solid $main-text;
+  border-radius: 2px;
+  padding: 3px 0;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: $shadow-btn-small;
+  font-size: $font-size-s;
+  font-weight: 700;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.41);
+  }
+}
+
+.timeWrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 5px 5px 0;
+}
+
+.timeRow {
+  width: 100%;
+ @include flex-end;
+ flex-direction: row;
+
+  & > p {
+    margin-right: 10px;
+  }
+}
+
+.addAskWrapper {
+  @include flex-start;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 40px;
+  font-size: $font-size-s;
+}
+
+.deleteWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 20px;
+  padding: 10px;
+  transition: $transition-header;
+}
+
+.deleteFrame {
+  @include flex-center;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid $btn-def-background;
+}
+
+.btnGroup {
+  @include flex-between;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: $main-text;
+}
+
+.deleteAsk {
+  cursor: pointer;
+  margin-top: 45px;
+  text-align: center;
+  padding: 0 10px 0 20px;
+  color: $background-complex;
+  font-size: $font-size-l;
+}
+
+.deleteBtn {
+  font-weight: 700;
+  margin: 0 0 22px 63% ;
+  padding: 3px 15px;
+  border-radius: 2px;
+  //border: 1px solid $main-text;
+  background: rgba(188, 187, 187, 0.6);
+  box-shadow: $shadow-btn-small;
+  font-size: $font-size-s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.41);
+    //transform: scale(1.02);
+  }
+}
+
+
+.userCancel {
+  width: 100%;
+  border-radius: 2px 2px 10px 2px;
+  padding: 5px 0;
+}
+
+.userDelete {
+  width: 100%;
+  border-radius: 2px 2px 2px 2px;
+  padding: 5px 0;
+  border-bottom: none;
+}
+
+.deleteGroup {
+  width: 100%;
+}

@@ -1,0 +1,45 @@
+@import "../../../styles/abstracts/mixins";
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/global/base";
+
+.patientItem {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  grid-gap: 40px;
+  color: $btn-background;
+  border-radius: 7px;
+  background: $blue-gradient;
+  padding: 16px 36px;
+  margin: 2px 0;
+  transition: $transition;
+  font-size: $font-size-m;
+  width: 100%;
+  cursor: pointer;
+
+  @media only screen and (min-device-width: $breakpoint-tablet) {
+    grid-gap: 45px;
+    font-size: $font-size-m;
+  }
+
+  &:hover {
+    box-shadow: $shadow-box-hovered;
+    transform: translate(-15px, -1px);
+  }
+
+  & > li {
+    @include flex-center;
+    padding: 0 16px;
+  }
+}
+
+.redBtn {
+  background: $error;
+  color: $btn-def-background;
+  transition: $transition;
+}
+
+.disabledBtn.disabledBtn:hover {
+  color: $secondary-text;
+  box-shadow: none;
+  transform: none;
+}

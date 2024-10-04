@@ -1,0 +1,43 @@
+@import '../../../styles/abstracts/variables';
+@import "../../../styles/abstracts/mixins";
+
+
+.form {
+  @include flex-center;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px double $secondary-text;
+  flex-direction: column;
+}
+
+.contentWrapper {
+  @include flex-between;
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.content {
+  position: absolute;
+  top: -10px;
+  right: -60px;
+  font-weight: 900;
+  color: $primary-text;
+  background: $btn-light;
+  width: 150px;
+}
+
+.houseContainer {
+  @include flex-center;
+  flex-direction: row;
+  width: 80%;
+  gap: 40px;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+@import "../../../styles/abstracts/mixins";
+
+.searchPatientForm {
+    width: 100%;
+  @include flex-center
+}

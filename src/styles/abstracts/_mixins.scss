@@ -1,0 +1,82 @@
+@import 'variables';
+
+@mixin flex-start {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+@mixin uppercase {
+  text-transform: uppercase;
+  font-family: $flaviotte-semibold;
+}
+
+@mixin btnGrey {
+  background-color: $btn-light;
+  aspect-ratio: 1/1;
+
+  &:hover {
+    box-shadow: inset 0px 0px 6px rgba(0,0,0,0.4);
+  }
+
+  &:active {
+    box-shadow: inset 0px 0px 4px rgba(0,0,0,0.25);
+    transform: scale(.98, .98);
+  }
+}
+
+@mixin btnBlack {
+  color: $btn-def-background;
+  background-color: $btn-background;
+  aspect-ratio: 1/1;
+
+
+  &:hover {
+    box-shadow:
+            inset 0px 0px 6px $btn-def-background,
+            inset 0px 0px 15px $pure-black;
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: scale(.96, .96);
+  }
+}
+
+@mixin customLoader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background:
+          radial-gradient(farthest-side,$bg-purple-dark 94%,#0000) top/8px 8px no-repeat,
+          conic-gradient(#0000 30%,$bg-purple-dark);
+  animation:s3 1s infinite linear;
+}
+
+@keyframes s3{
+  100%{transform: rotate(1turn)}
+}
