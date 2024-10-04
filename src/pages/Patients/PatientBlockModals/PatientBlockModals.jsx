@@ -1,17 +1,17 @@
-import React, { useState, useContext, useRef, memo } from "react";
-import PropTypes from "prop-types";
+import { useState, useContext, useRef, memo } from "react"
+import PropTypes from "prop-types"
 
-import { useDispatch } from "react-redux";
-import { updatePatient, deletePatient } from "../../../store/Redux/Patient/Thunk.js";
+import { useDispatch } from "react-redux"
+import { updatePatient, deletePatient } from "../../../store/Redux/Patient/Thunk"
 
-import PatientDetails from "../PatientDetails/PatientDetails.jsx";
-import Modal from '../../../Components/Modal/ModalDefault/Modal.jsx';
+import PatientDetails from "../PatientDetails/PatientDetails"
+import Modal from '../../../Components/Modal/ModalDefault/Modal'
 import EditPatient from '../EditPatient/EditPatient.jsx'
-import delayPopTimer from "../../../Components/PopUp/delayPopTimer.js";
-import LanguagesContext from "../../../store/Context/LanguageContext/LanguagesContext.jsx";
-import { translation } from "../../../store/Context/LanguageContext/translation/translation.js";
+import delayPopTimer from "../../../Components/PopUp/delayPopTimer"
+import LanguagesContext from "../../../store/Context/LanguageContext/LanguagesContext"
+import { translation } from "../../../store/Context/LanguageContext/translation/translation"
 
-import styles from "../PatientItem/PatientItem.module.scss";
+import styles from "../PatientItem/PatientItem.module.scss"
 
 
 
@@ -133,11 +133,16 @@ const PatientBlockModals = (props) => {
 
 PatientBlockModals.propTypes = {
     patient: PropTypes.shape({
+        _id: PropTypes.string,
         name: PropTypes.string.isRequired,
         surname: PropTypes.string.isRequired,
         phone: PropTypes.string.isRequired,
         email: PropTypes.string,
-    })
+    }),
+    setIsPopUpActive: PropTypes.func,
+    setIsEditedPopUp: PropTypes.func,
+    setIsModalActive: PropTypes.func,
+    isModalActive: PropTypes.bool
 }
 
 export default memo(PatientBlockModals);
