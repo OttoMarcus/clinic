@@ -3,16 +3,17 @@ import Modal from "../Modal/ModalDefault/Modal.jsx";
 import LoginForm from "../forms/LoginForm/LoginForm.jsx";
 import { title, textFirst, textSecondary } from "../../helper/constant.js";
 import styles from "../Modal/ModalLogin/ModalLogin.module.scss";
+import PropTypes from "prop-types";
 
 const Authorization = ({ setIsAuth }) => {
     const [isModalActive, setIsModalActive] = useState(true);
 
     const logRef = useRef();
 
-    const [inputValues, setInputValues] = useState({
-        username: "admin",
-        password: ""
-    });
+    // const [inputValues, setInputValues] = useState({
+    //     username: "admin",
+    //     password: ""
+    // });
 
     const userList = [
         { username: "admin", password: "admin" },
@@ -81,3 +82,8 @@ const Authorization = ({ setIsAuth }) => {
 };
 
 export default Authorization;
+
+
+Authorization.propTypes = {
+    setIsAuth: PropTypes.bool
+}
