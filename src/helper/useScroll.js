@@ -5,6 +5,7 @@ function useScroll(timeout = 100) {
     const [scrollPosition, setScrollPosition] = useState(0);
 
     // Використовуємо useCallback для мемоізації handleScroll
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleScroll = useCallback(
         debounce(() => {
             setScrollPosition(window.scrollY);
