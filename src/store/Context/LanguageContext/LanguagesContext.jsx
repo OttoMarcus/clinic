@@ -4,26 +4,19 @@ const LanguagesContext = createContext();
 
 export const LanguagesProvider = ({ children }) => {
     const [lang, setLang] = useState('EN');
+
     useEffect(() => {
-        const lang = localStorage.getItem('lang');
-        if (lang) {
-            setLang(lang);
+        const storedLang = localStorage.getItem('lang');
+        if (storedLang) {
+            setLang(storedLang);
         }
     }, []);
 
-    const changeLang = (lang) => {
-        if (lang === 'UA') {
-            setLang('EN');
-            localStorage.setItem('lang', 'EN');
-            return;
-        }
-        if (lang=== 'EN') {
-            setLang('UA');
-            localStorage.setItem('lang', 'UA');
-            return;
-        }
-
-    }
+    const changeLang = () => {
+        const newLang = lang === 'UA' ? 'EN' : 'UA';
+        setLang(newLang);
+        localStorage.setItem('lang', newLang);
+    };
 
     return (
         <LanguagesContext.Provider value={{ lang, changeLang }}>

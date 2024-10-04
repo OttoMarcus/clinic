@@ -1,4 +1,4 @@
-import react, {useContext} from 'react'
+import {useContext} from 'react'
 import {Formik, Form} from 'formik'
 import CustomField from '../CustomInputFields/CustomField/CustomField.jsx'
 import validationSchema from './validationSchema.js'

@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from "./Composition/Header/Header.jsx"
 import Footer from "./Composition/Footer/Footer.jsx"
 import RootRoutes from "./routes/RootRoutes.jsx"

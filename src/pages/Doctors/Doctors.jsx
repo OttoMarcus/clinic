@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import BgWallpaper from '../../Components/BgWallpaper/BgWallpaper.jsx';
 import DocTable from './DocTable/DocTable.jsx';
 

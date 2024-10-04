@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import store from './store/Redux/store.js'
 import {BrowserRouter} from 'react-router-dom'
-import { LanguagesProvider } from './store/Context/LanguageContext/LanguagesContext.jsx'
-import { BurgerProvider } from './store/Context/BurgerContext/ActiveBurger/ActiveBurger.jsx'
+import { LanguagesProvider } from './store/Context/LanguageContext/LanguagesContext'
+import { BurgerProvider } from './store/Context/BurgerContext/ActiveBurger/ActiveBurger'
 import { ErrorBoundary } from "react-error-boundary"
 import { Provider } from 'react-redux'
 
