@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef, memo } from 'react'
+import { useContext, useState, useEffect, useRef, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import onSubmitRef   from "../../helper/onSubmitRef.js";
 
@@ -77,7 +77,7 @@ const DesktopButtonsGroup = () => {
         } else if (status === 'failed') {
             console.log(error);
         }
-    }, [status, dispatch]);
+    }, [status, dispatch]); //eslint-disable-line
     
  /////////////////////////////////   STATE HOOKS   /////////////////////////////////
 
@@ -120,14 +120,14 @@ const DesktopButtonsGroup = () => {
 
     return (
         <div className={styles.btnGroup}>
-            <Link to="/"><Button classname={cn(styles.btnGrey, styles.home)} children={<Home/>}/></Link>
-            <Button classname={styles.btnBlack} children={<Sort/>}/>
-            <Button classname={styles.btnGrey} children={lang} click={() => changeLang(lang)}/>
-            { (locationPath === '/' || locationPath === "/calendar") && <Button classname={styles.btnBlackWide} children={visit} click={handleVisitModal}/>}
-            { locationPath === "/doctors" && <Button classname={styles.btnBlackWide} children={addDoctor} click={handleDoctorModal} />}
-            { locationPath === "/patients" && <Button classname={styles.btnBlackWide} children={addPatient} click={handlePatientModal}/> }
+            <Link to="/"><Button classname={cn(styles.btnGrey, styles.home)} ><Home/></Button></Link>
+            <Button classname={styles.btnBlack} ><Sort/></Button>
+            <Button classname={styles.btnGrey} click={() => changeLang(lang)}>{lang}</Button>
+            { (locationPath === '/' || locationPath === "/calendar") && <Button classname={styles.btnBlackWide} click={handleVisitModal}>{visit}</Button>}
+            { locationPath === "/doctors" && <Button classname={styles.btnBlackWide} click={handleDoctorModal} >{addDoctor}</Button> }
+            { locationPath === "/patients" && <Button classname={styles.btnBlackWide} click={handlePatientModal} >{addPatient}</Button> }
             <div className={styles.menuAncor}>
-                <Button classname={styles.navStyleBtn} children={<Navigation/>} click={() => setIsOpenNav(!isOpenNav)}/>
+                <Button classname={styles.navStyleBtn} click={() => setIsOpenNav(!isOpenNav)} ><Navigation/></Button>
                 <Menu classname={isOpenNav} setIsActive={setIsOpenNav}/>
             </div>
             {/*///////////////////////////////////   ADD VISIT   ////////////////////////////////////*/}
@@ -148,13 +148,14 @@ const DesktopButtonsGroup = () => {
                     setIsModalActive={ setIsAddDoctorModalActive }
                     isModalActive={ isAddDoctorModalActive }
                     title={title_doctor}
-                    children={<AddDoctorForm formikRef={doctorFormikRef} onSubmit={handleDoctorSubmit}/>}
                     textFirst={btn_cancel}
                     clickFirst={handleDoctorModal}
                     textSecondary={btn_submit}
                     clickSecondary={() => onSubmitRef(doctorFormikRef)}
                     type={"submit"}
-                />
+                >
+                    <AddDoctorForm formikRef={doctorFormikRef} onSubmit={handleDoctorSubmit}/>
+                </Modal>
             }
             {/*/////////////////////////////////////   ADD PATIENT   //////////////////////////////////////*/}
             {
@@ -163,18 +164,19 @@ const DesktopButtonsGroup = () => {
                     setIsModalActive={ setIsAddPatientModalActive}
                     isModalActive={ isAddPatientModalActive}
                     title={title_patient}
-                    children={<AddPatientForm formikRef={patientFormikRef} onSubmit={handlePatientSubmit}/>}
                     textFirst={btn_cancel}
                     clickFirst={handlePatientModal}
                     textSecondary={btn_submit}
                     clickSecondary={() => onSubmitRef(patientFormikRef)}
                     type={"submit"}
-                />
+                >
+                    <AddPatientForm formikRef={patientFormikRef} onSubmit={handlePatientSubmit}/>
+                </Modal>
             }
 
-            <PopUp activePopUp={patientPopUp} children={ isErrorByAdding ? errorAddPatient : confirmAddPatient } />
-            <PopUp activePopUp={doctorPopUp} children={ isErrorByAdding ? errorAddDoctor : confirmAddDoctor } />
-            <PopUp activePopUp={visitPopUp} children={ isErrorByAdding ? errorAddVisit : confirmAddVisit } />
+            <PopUp activePopUp={patientPopUp}>{ isErrorByAdding ? errorAddPatient : confirmAddPatient }</PopUp>
+            <PopUp activePopUp={doctorPopUp}>{ isErrorByAdding ? errorAddDoctor : confirmAddDoctor }</PopUp>
+            <PopUp activePopUp={visitPopUp}>{ isErrorByAdding ? errorAddVisit : confirmAddVisit }</PopUp>
         </div>
     )
 }

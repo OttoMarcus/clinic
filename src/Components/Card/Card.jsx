@@ -1,9 +1,6 @@
 import {useState, memo, useContext} from "react"
 import PropTypes from "prop-types"
 
-import {useDispatch} from "react-redux"
-import {deleteVisit} from "../../store/Redux/Visit/Thunk.js"
-
 import LanguagesContext from "../../store/Context/LanguageContext/LanguagesContext.jsx"
 import {translation} from "../../store/Context/LanguageContext/translation/translation.js"
 
@@ -15,7 +12,6 @@ import Clock from "../icons/Clock/Clock.jsx"
 
 import calcDayDifference from "../../helper/DataManipulation/calcDayDifference.js"
 import stringToDate from "../../helper/DataManipulation/stringToDate.js"
-import delayPopTimer from "../PopUp/delayPopTimer.js"
 
 import cn from "classnames"
 import styles from "./Card.module.scss"
@@ -124,9 +120,12 @@ const Card = (props) => {
                                 <div className={styles.deleteGroup}>
                                     <Button
                                        classname={cn(styles.userEdit, styles.userDelete)}
-                                       onClick={() => deleteCard(_id)}
-                                       children={btn_delete} />
-                                    <Button classname={cn(styles.userEdit, styles.userCancel)} click={deleteInit} children={btn_cancel} />
+                                       onClick={() => deleteCard(_id)} >
+                                        {btn_delete}
+                                    </Button>
+                                    <Button classname={cn(styles.userEdit, styles.userCancel)} click={deleteInit} >
+                                        {btn_cancel}
+                                    </Button>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +143,7 @@ const Card = (props) => {
 
                     <div className={styles.addAskWrapper}>
                         {visitRest.visitReason &&
-                            <b>"{visitRest.visitReason}"</b>
+                            <b>{visitRest.visitReason}</b>
                         }
                         {entries.length > 0 && (
                             <>
@@ -166,13 +165,15 @@ const Card = (props) => {
                             </div>
                             <Button classname={cn(styles.userEdit, styles.userDelete)}
                                     click={openPatientDetails}
-                                    children={patient}
                                     disabled={!!patientError}
-                            />
+                            >
+                                    children={patient}
+                            </Button>
                             <Button classname={cn(styles.userEdit, styles.userCancel)}
                                     click={openVisitEdit}
-                                    children={btn_change}
-                            />
+                            >
+                                {btn_change}
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -201,6 +202,9 @@ export default memo(Card);
 
 Card.propTypes = {
     visitDetails: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        patient_id: PropTypes.string.isRequired,
+        time: PropTypes.string,
         urgency: PropTypes.string.isRequired,
         specialization: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
@@ -210,7 +214,11 @@ Card.propTypes = {
     specialist: PropTypes.arrayOf(PropTypes.shape({
         img: PropTypes.string.isRequired,
     })).isRequired,
-    specializationsError: PropTypes.string
+    specializationsError: PropTypes.string,
+    deleteCard: PropTypes.func.isRequired,
+    patientDetails: PropTypes.func,
+    patientError: PropTypes.bool,
+    visitEdit: PropTypes.func
 };
 
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
@@ -29,9 +29,9 @@ const SearchInput = ({ value, onChange }) => {
     )
 }
 
+export default SearchInput
+
 SearchInput.propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired
 }
-
-export default SearchInput

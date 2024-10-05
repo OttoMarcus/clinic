@@ -1,5 +1,4 @@
-import React, {useContext, useRef, useState} from "react";
-import PropTypes from "prop-types";
+import {useContext, useRef, useState} from "react";
 
 import onSubmitRef from "../../helper/onSubmitRef.js"
 import Modal from "../Modal/ModalDefault/Modal.jsx"
@@ -15,6 +14,7 @@ import SearchPatientForm from "../forms/SearchPatientForm/SearchPatientForm.jsx"
 import AddPatientForm from "../forms/AddPatientForm/AddPatientForm.jsx";
 
 import styles from "./Visit.module.scss";
+import PropTypes from "prop-types";
 
 
 const Visit = (props) => {
@@ -29,7 +29,7 @@ const Visit = (props) => {
     const { lang } = useContext(LanguagesContext);
     const { find_patient, btn_find, title_visit, btn_submit, btn_cancel, addPatientNew , addPatient} = translation[lang]
 
-    let searchPhone = "";
+    // let searchPhone = "";
     const visitFormRef = useRef();
     const searchFormRef = useRef();
     const patientFormikRef = useRef();
@@ -148,3 +148,12 @@ const Visit = (props) => {
 }
 
 export default Visit
+
+
+Visit.propTypes = {
+    isVisitActive: PropTypes.bool.isRequired,
+    setVisitActive: PropTypes.func.isRequired,
+    setIsErrorByAdding: PropTypes.func,
+    setVisitPopUp: PropTypes.func,
+    setPatientPopUp: PropTypes.func
+}
