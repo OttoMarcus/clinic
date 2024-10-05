@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import  useScroll from '../../helper/useScroll.js'
 import styles from './BgWallpaper.module.scss'

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import BgWallpaper from '../../Components/BgWallpaper/BgWallpaper.jsx';
 import DocTable from './DocTable/DocTable.jsx';
 
@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchDoctors } from '../../store/Redux/Doctor/Thunk.js';
 
 import styles from './Doctors.module.scss';
+
 
 
 const Doctors = () => {
@@ -24,6 +25,7 @@ const Doctors = () => {
             dispatch(fetchDoctors());
         }
     }, [status, dispatch]);
+
 
     return (
         <div className={styles.container}>

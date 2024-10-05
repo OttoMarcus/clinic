@@ -1,4 +1,4 @@
-import React, { useContext, memo, useMemo, useState } from 'react';
+import { useContext, memo, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import SortUp from '../../../Components/icons/SortUp/SortUp.jsx';
@@ -14,7 +14,7 @@ import { translation } from '../../../store/Context/LanguageContext/translation/
 import cn from 'classnames';
 import styles from './DocTable.module.scss';
 
-const DocTable = ({ doctors }) => {
+const DocTable = ({ doctors=[] }) => {
     const { lang } = useContext(LanguagesContext);
     const { table, specialists } = translation[lang];
 
@@ -45,43 +45,49 @@ const DocTable = ({ doctors }) => {
                 <table {...getTableProps()} className={styles.frame}>
                     <thead className={styles.headerWrapper}>
                     {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
+                        <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
                             {headerGroup.headers.map((column) => (
                                 <th {...column.getHeaderProps(column.getSortByToggleProps())}
+                                    key={column.id}
                                     className={cn(styles.headerName, {[styles.active]: column.isSorted})}>
                                     {column.render('Header')}
                                     <span className={styles.sortIcon}>
-                                    {column.isSorted ? (column.isSortedDesc ? <SortUp/> : <SortDown/>) : ''}
-                                </span>
+                        {column.isSorted ? (column.isSortedDesc ? <SortUp/> : <SortDown/>) : ''}
+                    </span>
                                 </th>
                             ))}
                         </tr>
                     ))}
                     </thead>
+
                     <tbody {...getTableBodyProps()}>
                     {rows.map((row) => {
                         prepareRow(row);
                         return (
-                            <tr {...row.getRowProps()}>
+                            <tr {...row.getRowProps()} key={row.id}>
                                 {row.cells.map((cell) => (
-                                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                    <td {...cell.getCellProps()} key={cell.column.id}>
+                                        {cell.render('Cell')}
+                                    </td>
                                 ))}
                             </tr>
                         );
                     })}
                     </tbody>
+
                 </table>
             </div>
         </>
     )
 }
 
+
+export default memo(DocTable)
+
 DocTable.propTypes = {
-    doctors: PropTypes.array
+    doctors: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ])
 };
 
-DocTable.defaultProps = {
-    doctors: []
-};
-
-export default memo(DocTable);

@@ -23,8 +23,8 @@ const Patients = () => {
     const [isEditedPopUp, setIsEditedPopUp] = useState(false);
 
     // Мемоізація функцій
-    const memoizedSetIsPopUpActive = useCallback(setIsPopUpActive, []);
-    const memoizedSetIsEditedPopUp = useCallback(setIsEditedPopUp, []);
+    const memoizedSetIsPopUpActive = useCallback(setIsPopUpActive, [setIsPopUpActive]);
+    const memoizedSetIsEditedPopUp = useCallback(setIsEditedPopUp, [setIsEditedPopUp]);
 
     const { lang } = useContext(LanguagesContext);
     const { addPatientForm, removedPatient, editedPatient } = translation[lang];
@@ -57,7 +57,7 @@ const Patients = () => {
                 </div>
                 {status === 'loading' && <div className={styles.customLoader}></div>}
                 {status === 'failed' && <h2>Error: {error}</h2>}
-                {status === 'succeeded' && patients && patients.length > 0
+                {status === 'succeeded' && Array.isArray(patients) && patients.length > 0
                     ? patients.map(patient =>
                     <PatientItem
                         key={patient._id}
@@ -69,8 +69,8 @@ const Patients = () => {
                 }
             </div>
 
-            <PopUp activePopUp={isPopUpActive} children={removedPatient}/>
-            <PopUp activePopUp={isEditedPopUp} children={editedPatient} />
+            <PopUp activePopUp={isPopUpActive}>{removedPatient}</PopUp>
+            <PopUp activePopUp={isEditedPopUp}>{editedPatient} </PopUp>
         </div>
     )
 }

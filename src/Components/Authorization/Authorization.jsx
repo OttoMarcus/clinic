@@ -85,5 +85,5 @@ export default Authorization;
 
 
 Authorization.propTypes = {
-    setIsAuth: PropTypes.bool
+    setIsAuth: PropTypes.func
 }

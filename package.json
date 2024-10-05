@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "npx eslint src/Components/Authorization/*.jsx --fix",
+    "lint": "npx eslint src/Components/**/*.jsx --fix",
     "preview": "vite preview",
     "prepare": "husky install"
   },

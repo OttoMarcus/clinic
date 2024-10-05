@@ -18,6 +18,7 @@ import VisitEdit from "../../Components/Visit/VisitEdit/VisitEdit.jsx";
 
 import cn from 'classnames'
 import styles from './HomePage.module.scss'
+import PropTypes from "prop-types";
 
 
 
@@ -106,16 +107,15 @@ const HomePage = () => {
 
     return (
         <div className={styles.homePageContainer}>
-            <div className={styles.mainBackground}></div>
+            {/*<div className={styles.mainBackground}></div>*/}
             <article className={styles.wellcome}></article>
             {patientStatus === 'failed' && <h2 className={styles.errorFrame}>...Ups, Patients loading problem.Error: {patientError} <p>{assistant}</p></h2>}
 
-            {/*<div className={styles.contentWrapper}>*/}
                 <div className={cn(styles.contentGridman, styles.container)}>
                     {visitStatus === 'loading' && <div className={styles.customLoader}></div>}
                     {visitStatus === 'failed' && <h2>Error: {error}</h2>}
                     {visitStatus === 'succeeded' && cardList && cardList.length > 0 && (
-                        cardList.map(element =>
+                        Array.isArray(cardList) && cardList.map(element =>
                             <Card
                                 key={element._id}
                                 visitDetails={element}
@@ -132,7 +132,7 @@ const HomePage = () => {
                     )}
 
                 </div>
-            {/*</div>*/}
+
             {visitStatus === 'succeeded' && cardList.length === 0 && <div className={styles.noVisits}><h3>No visits</h3></div>}
             {
                 isModalActive &&
@@ -158,15 +158,21 @@ const HomePage = () => {
                     />
             }
 
-            <PopUp activePopUp={isVisitEditPopUp} children={isErrorVisitEditPopUp ? error_editVisit : confirmEditVisit}/>
-            <PopUp activePopUp={isEditedPatientPopUp} children={isErrorEditPatientPopUp? error_editPatient : editedPatient}/>
-            <PopUp activePopUp={removeCardPopUp} children={errorDeletePopUp ? cardDeleteError : cardDeleteSuccess}/>
+            <PopUp activePopUp={isVisitEditPopUp}> {isErrorVisitEditPopUp ? error_editVisit : confirmEditVisit} </PopUp>
+            <PopUp activePopUp={isEditedPatientPopUp}> {isErrorEditPatientPopUp? error_editPatient : editedPatient} </PopUp>
+            <PopUp activePopUp={removeCardPopUp}>{errorDeletePopUp ? cardDeleteError : cardDeleteSuccess} </PopUp>
             {scroll > 300 && <ToUpButton/>}
         </div>
     )
 }
 
 export default HomePage
+
+HomePage.propTypes = {
+    visits: PropTypes.array,
+    patients: PropTypes.array,
+    specializations: PropTypes.array
+}
 
 // Головна сторінка, де відображаються картки з інформацією про візити.
 // Для поп-ап вікна потрібно в компонент PopUp передати змінну активності, а також наявність помилки, якщо відбулося
