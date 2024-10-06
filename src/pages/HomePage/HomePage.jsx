@@ -137,7 +137,7 @@ const HomePage = () => {
             {
                 isModalActive &&
                     <PatientBlockModals
-                        patient={patientArr || null}
+                        patient={patientArr}
                         // setIsPopUpActive={setIsPopUpActive}
                         setIsEditedPatientPopUp={setIsEditedPatientPopUp}
                         setIsErrorEditPatientPopUp={setIsErrorEditPatientPopUp}
