@@ -167,7 +167,7 @@ const Card = (props) => {
                                     click={openPatientDetails}
                                     disabled={!!patientError}
                             >
-                                    children={patient}
+                                    {patient}
                             </Button>
                             <Button classname={cn(styles.userEdit, styles.userCancel)}
                                     click={openVisitEdit}

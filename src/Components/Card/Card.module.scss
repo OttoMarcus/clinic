@@ -73,7 +73,6 @@
   left: 8px;
   width: 160px;
   height: 30px;
-  //transform: rotate(15deg);
   z-index: 3;
   font-size: $font-size-l;
   color: $btn-background;
@@ -112,7 +111,7 @@
 }
 
 .cardContainer {
-  transition: $transition-header;
+  transition: $transition;
   position: relative;
   width: 100%;
   height: 100%;

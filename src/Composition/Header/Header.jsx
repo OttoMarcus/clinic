@@ -1,16 +1,15 @@
-import React, { useState, useContext } from 'react'
+import { useContext } from 'react'
 
-import Button from '../../Components/Button/Button.jsx'
-import ArrowRight from '../../Components/icons/ArrowRight/ArrowRight.jsx'
-import Sort from '../../Components/icons/Sort/Sort.jsx'
-import Xclose from '../../Components/Button/Xclose/Xclose.jsx'
-import { useBurger } from '../../store/Context/BurgerContext/ActiveBurger/ActiveBurger.jsx'
-import useScroll from "../../helper/useScroll.js"
+import Button from '../../Components/Button/Button'
+import ArrowRight from '../../Components/icons/ArrowRight/ArrowRight'
+import Xclose from '../../Components/Button/Xclose/Xclose'
+import { useBurger } from '../../store/Context/BurgerContext/ActiveBurger/ActiveBurger'
+import useScroll from "../../helper/useScroll"
 
-import DesktopButtonsGroup from '../../Components/DesktopButtonsGroup/DesktopButtonsGroup.jsx'
+import DesktopButtonsGroup from '../../Components/DesktopButtonsGroup/DesktopButtonsGroup'
 
-import LanguagesContext from '../../store/Context/LanguageContext/LanguagesContext.jsx'
-import { translation } from '../../store/Context/LanguageContext/translation/translation.js'
+import LanguagesContext from '../../store/Context/LanguageContext/LanguagesContext'
+import { translation } from '../../store/Context/LanguageContext/translation/translation'
 
 import cn from 'classnames'
 import styles from './Header.module.scss'
@@ -19,7 +18,7 @@ import styles from './Header.module.scss'
 
 
 const Header = () => {
-    const { lang, changeLang } = useContext(LanguagesContext);
+    const { lang } = useContext(LanguagesContext);
     const { isBurgerActive, toggleBurger, isMobile } = useBurger();
     const scroll = useScroll(200)
     const { visit } = translation[lang]
@@ -34,10 +33,10 @@ const Header = () => {
         <header className={cn({[styles.headerWrapper] : scroll > 200})}>
             <div className={cn(styles.headerBody, styles.container)}>
                 <div className={backdrop}></div>
-                <Button classname={cn(styles.btnX)} children={<Xclose/>} click={toggleBurger}/>
-                <Button classname={cn(styles.btnBlackWide, styles.hidden)} children={visit} />
+                <Button classname={cn(styles.btnX)} click={toggleBurger}><Xclose/></Button>
+                <Button classname={cn(styles.btnBlackWide, styles.hidden)}>{visit}</Button>
                     {!isMobile &&  <DesktopButtonsGroup />}
-                <Button classname={styles.btnGrey} children={<ArrowRight/>} click={logOut}/>
+                <Button classname={styles.btnGrey} click={logOut}><ArrowRight/></Button>
             </div>
         </header>
     )

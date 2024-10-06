@@ -1,6 +1,8 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import PropTypes from "prop-types";
 
 const LanguagesContext = createContext();
+
 
 export const LanguagesProvider = ({ children }) => {
     const [lang, setLang] = useState('EN');
@@ -22,7 +24,12 @@ export const LanguagesProvider = ({ children }) => {
         <LanguagesContext.Provider value={{ lang, changeLang }}>
             {children}
         </LanguagesContext.Provider>
-    );
-};
+    )
+}
 
 export default LanguagesContext;
+
+LanguagesProvider.propTypes = {
+    children: PropTypes.node
+}
+

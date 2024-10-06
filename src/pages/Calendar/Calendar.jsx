@@ -1,7 +1,3 @@
-import React, {useState, useEffect} from "react"
-import axios from 'axios'
-
-import styles from './Calendar.module.scss'
 
 const Calendar = () => {
     // const [forecastList, setForecastList] = useState([])

@@ -71,7 +71,7 @@ const HomePage = () => {
         if (patientStatus === 'idle') {
             dispatch(fetchPatients());
         }
-    },[])
+    },[])  // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         setCardList(visits);

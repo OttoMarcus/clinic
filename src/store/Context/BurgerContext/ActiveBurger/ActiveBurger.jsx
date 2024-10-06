@@ -1,4 +1,5 @@
-import React, { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const BurgerContext = createContext();
 
@@ -36,4 +37,9 @@ const useBurger = () => {
     return context;
 };
 
-export { BurgerProvider, useBurger };
+// eslint-disable-next-line react-refresh/only-export-components
+export { BurgerProvider, useBurger }
+
+BurgerProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+}
