@@ -1,13 +1,10 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
-import vitePluginSass from 'vite-plugin-sass';
 
-export default defineConfig({
+
+export default {
   plugins: [
-    react(),
-    svgr(),
-    vitePluginSass()
-  ]
-});
-
+      react(),
+      svgr(),
+  ],
+};
