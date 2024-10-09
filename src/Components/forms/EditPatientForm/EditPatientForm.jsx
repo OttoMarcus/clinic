@@ -8,6 +8,7 @@ import LanguagesContext from '../../../store/Context/LanguageContext/LanguagesCo
 import { translation } from '../../../store/Context/LanguageContext/translation/translation.js'
 
 import styles from './EditPatientForm.module.scss'
+import PropTypes from "prop-types";
 
 
 
@@ -93,4 +94,8 @@ const EditPatientForm = (props) => {
 
 export default EditPatientForm
 
-
+EditPatientForm.propTypes = {
+    patient: PropTypes.object,
+    editRef: PropTypes.any,
+    onSubmit: PropTypes.func
+}
