@@ -50,7 +50,7 @@ const EditPatientForm = (props) => {
                     validationSchema={validationSchema}
                     innerRef={editRef}
             >
-                {(form) => {
+                {(form) => {  //eslint-disable-line
                     return (
                         <Form className={styles.form}>
                             <CustomField name="name" id="name" label={addPatientForm[0]}/>
