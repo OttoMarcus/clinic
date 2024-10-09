@@ -1,4 +1,5 @@
-import React, {useState, useContext, useEffect} from 'react';
+import {useState, useContext, useEffect} from 'react';
+import PropTypes from 'prop-types';
 import {Formik, Form} from 'formik'
 import CustomField from '../CustomInputFields/CustomField/CustomField.jsx';
 import CustomSelectableSubInput from '../CustomInputFields/CustomSelectableSubInput/CustomSelectableSubInput.jsx';
@@ -16,8 +17,8 @@ import CustomSelectInput from "../CustomInputFields/CustomSelectInput/CustomSele
 
 
 
-const AddVisitForm = ({ visitFormRef, onSubmit, patientFind }) => {
-    const {patient_id, name, surname, phone, specialization, dedicatedDoctor, visitReason, urgency, date, time} = patientFind;
+const AddVisitForm = ({ visitFormRef, onSubmit, visitDetails }) => {
+    const {patient_id, name, surname, phone, specialization, dedicatedDoctor, visitReason, urgency, date, time} = visitDetails;
 
     const { lang } = useContext(LanguagesContext);
     const { addVisitForm, selectDoctor } = translation[lang];
@@ -118,6 +119,22 @@ const AddVisitForm = ({ visitFormRef, onSubmit, patientFind }) => {
 
 export default AddVisitForm;
 
+AddVisitForm.propTypes = {
+    visitFormRef: PropTypes.object,
+    onSubmit: PropTypes.func.isRequired,
+    visitDetails: PropTypes.shape({
+        patient_id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        surname: PropTypes.string.isRequired,
+        phone: PropTypes.string.isRequired,
+        specialization: PropTypes.string,
+        dedicatedDoctor: PropTypes.string.isRequired,
+        visitReason: PropTypes.string,
+        urgency: PropTypes.string,
+        date: PropTypes.string.isRequired, // Adjust type if necessary
+        time: PropTypes.string.isRequired, // Adjust type if necessary
+    }).isRequired,
+}
 
 // Bugs: При Edit Visit не всі поля форми підтягуються, в часності не підвантажуються спеціалісти та додаткові питання
 // Можна створити окрему форму

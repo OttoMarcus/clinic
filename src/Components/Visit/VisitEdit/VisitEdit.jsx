@@ -1,16 +1,17 @@
-import {useRef, useContext} from "react";
-import Modal from "../../Modal/ModalDefault/Modal.jsx"
-import AddVisitForm from "../../forms/AddVisitForm/AddVisitForm.jsx"
+import {useRef, useContext} from "react"
+import PropTypes from "prop-types"
+import Modal from "../../Modal/ModalDefault/Modal"
+import AddVisitForm from "../../forms/AddVisitForm/AddVisitForm"
+import delayPopTimer from "../../PopUp/delayPopTimer"
 
-import LanguagesContext from '../../../store/Context/LanguageContext/LanguagesContext.jsx'
-import { translation } from '../../../store/Context/LanguageContext/translation/translation.js'
+import LanguagesContext from '../../../store/Context/LanguageContext/LanguagesContext'
+import { translation } from '../../../store/Context/LanguageContext/translation/translation'
 
-import {useDispatch} from "react-redux";
-import {updateVisit} from "../../../store/Redux/Visit/Thunk.js";
-
-import delayPopTimer from "../../PopUp/delayPopTimer.js";
+import {useDispatch} from "react-redux"
+import {updateVisit} from "../../../store/Redux/Visit/Thunk"
 
 import styles from "./VisitEdit.module.scss"
+
 
 
 
@@ -30,7 +31,6 @@ const VisitEdit = (props) => {
     const { visit_edit, btn_save, btn_cancel } = translation[lang];
     const dispatch = useDispatch();
     const visitEditRef = useRef();
-
 
 
     const onSubmit = () => {        //
@@ -79,7 +79,7 @@ const VisitEdit = (props) => {
             >
                 <AddVisitForm
                     visitFormRef={visitEditRef}
-                    patientFind={visit}
+                    visitDetails={visit}
                     onSubmit={handleEdit}
                 />
 
@@ -90,3 +90,11 @@ const VisitEdit = (props) => {
 }
 
 export default VisitEdit
+
+VisitEdit.propTypes = {
+    setIsVisitEditActive: PropTypes.func.isRequired,
+    isVisitEditActive: PropTypes.bool.isRequired,
+    setIsVisitEditPopUp: PropTypes.func.isRequired,
+    setIsErrorVisitEditPopUp: PropTypes.func.isRequired,
+    visit: PropTypes.object.isRequired
+}

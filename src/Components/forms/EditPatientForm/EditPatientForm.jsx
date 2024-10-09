@@ -92,3 +92,5 @@ const EditPatientForm = (props) => {
 }
 
 export default EditPatientForm
+
+
