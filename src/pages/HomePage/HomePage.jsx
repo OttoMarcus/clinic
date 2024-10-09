@@ -41,7 +41,7 @@ const HomePage = () => {
 
     const [removeCardPopUp, setRemoveCardPopUp] = useState(false);
     const [errorDeletePopUp, setErrorDeletePopUp] = useState(false);
-    const [isEditedPatientPopUp, setIsEditedPatientPopUp] = useState(false);
+    const [isEditPatientPopUp, setIsEditPatientPopUp] = useState(false);
     const [isErrorEditPatientPopUp, setIsErrorEditPatientPopUp] = useState(false);
     const [isVisitEditPopUp, setIsVisitEditPopUp] = useState(false);
     const [isErrorVisitEditPopUp, setIsErrorVisitEditPopUp] = useState(false);
@@ -138,9 +138,8 @@ const HomePage = () => {
                 isModalActive &&
                     <PatientBlockModals
                         patient={patientArr}
-                        // setIsPopUpActive={setIsPopUpActive}
-                        setIsEditedPatientPopUp={setIsEditedPatientPopUp}
-                        setIsErrorEditPatientPopUp={setIsErrorEditPatientPopUp}
+                        setIsEditedPopUp={setIsEditPatientPopUp}  //Запуск попапу
+                        setIsPopUpActive={setIsErrorEditPatientPopUp} //ініціалізація для повідомлення про помилку редагування
                         isModalActive={isModalActive}
                         setIsModalActive={setIsModalActive}
 
@@ -159,7 +158,7 @@ const HomePage = () => {
             }
 
             <PopUp activePopUp={isVisitEditPopUp}> {isErrorVisitEditPopUp ? error_editVisit : confirmEditVisit} </PopUp>
-            <PopUp activePopUp={isEditedPatientPopUp}> {isErrorEditPatientPopUp? error_editPatient : editedPatient} </PopUp>
+            <PopUp activePopUp={isEditPatientPopUp}> {isErrorEditPatientPopUp? error_editPatient : editedPatient} </PopUp>
             <PopUp activePopUp={removeCardPopUp}>{errorDeletePopUp ? cardDeleteError : cardDeleteSuccess} </PopUp>
             {scroll > 300 && <ToUpButton/>}
         </div>
