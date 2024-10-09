@@ -38,7 +38,6 @@ export const updatePatient = createAsyncThunk('patients/updatePatient', async (d
             throw new Error('Patient has no ID'); // Кидаємо помилку, якщо ID відсутній
         }
         const response = await instance.put(`/patients/${data._id}`, data);
-        console.log(response.data)
         return response.data;
     } catch (error) {
         return rejectWithValue(error.response ? error.response.data : error.message);
