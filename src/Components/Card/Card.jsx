@@ -81,7 +81,7 @@ const Card = (props) => {
 // вираховую наближення дати візиту, щоб забарвити годинник
     const dateNow = Date.now();
     const leftDays = calcDayDifference(dateNow, date);
-    let fill = "none";
+    let fill;
 
     if (leftDays < 2) {
         fill = "day";
