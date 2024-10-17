@@ -106,6 +106,7 @@ const Card = (props) => {
         visitEdit(_id);
     }
 
+
     return (
         <div className={cn(styles.cardContainer, color())} onClick={handleOpenCard}>
             <div className={styles.contentWrapper}>
@@ -120,7 +121,7 @@ const Card = (props) => {
                                 <div className={styles.deleteGroup}>
                                     <Button
                                        classname={cn(styles.userEdit, styles.userDelete)}
-                                       onClick={() => deleteCard(_id)} >
+                                       click={() => deleteCard(_id)} >
                                         {btn_delete}
                                     </Button>
                                     <Button classname={cn(styles.userEdit, styles.userCancel)} click={deleteInit} >
