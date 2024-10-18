@@ -9,7 +9,7 @@ import LanguagesContext from '../../../store/Context/LanguageContext/LanguagesCo
 import { translation } from '../../../store/Context/LanguageContext/translation/translation.js';
 import styles from './AddVisitForm.module.scss';
 import CustomRadioGroup from "../CustomInputFields/CustomRadioGroup/CustomRadioGroup.jsx";
-// import useDoctorList from "../../../helper/useDoctorList.js";
+import useDoctorList from "../../../helper/useDoctorList.js";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchDoctors} from "../../../store/Redux/Doctor/Thunk.js";
 import CustomSelectInput from "../CustomInputFields/CustomSelectInput/CustomSelectInput.jsx";
@@ -17,38 +17,37 @@ import CustomSelectInput from "../CustomInputFields/CustomSelectInput/CustomSele
 
 
 
-const AddVisitForm = ({ visitFormRef, onSubmit, patientFind }) => {
-    const {_id, name, surname, phone} = patientFind;
+const AddVisitForm = ({ visitFormRef, onSubmit, visitDetails }) => {
+    const {patient_id, name, surname, phone, specialization, dedicatedDoctor, visitReason, urgency, date, time} = visitDetails;
 
     const { lang } = useContext(LanguagesContext);
     const { addVisitForm, selectDoctor } = translation[lang];
 
     const specializations = useSpecializations();
-    //список усіх лікарів
-    const doctors = useSelector(state => state.doctors.doctors);
-    const doctors_status = useSelector(state => state.doctors.status);
 
     const dispatch = useDispatch();
+    const doctors = useSelector(state => state.doctors.doctors);
+    const status = useSelector(state => state.doctors.status);
+    const error = useSelector(state => state.doctors.error);
 
     //Якщо в редаксі ще не підгружені лікарі то підгружаємо тут
     useEffect(() => {
-        if (doctors_status === 'idle') {
+        if (status === 'idle') {
             dispatch(fetchDoctors());
         }
-    }, [doctors_status, dispatch]);
+    }, [status, dispatch]);
 
     const [additionalFields, setAdditionalFields] = useState([]);
-
     const [doctorList, setDoctorList] = useState([]);
 
-    //визначає додаткові поля для під кожну спеціалізацію
+    //функція, що визначає додаткові поля для під кожну спеціалізацію
     const handleFieldAddition = (questions) => {
         setAdditionalFields(
             questions.map(q => ({ name: q.ask, placeholder: q.placeholder }))
         );
     };
 
-    //формує  список доступних лікарів
+    //функція, що формує  список доступних лікарів
     const handleDoctorList = (docs) => {
         setDoctorList(
             docs.map(d => ({ id: d._id, name: d.name + ' ' + d.surname }))
@@ -56,16 +55,16 @@ const AddVisitForm = ({ visitFormRef, onSubmit, patientFind }) => {
     };
 
     const initialValues = {
-        patient_id: _id,
-        phone: phone,
-        name: name,
-        surname: surname,
-        specialization: '',
-        dedicatedDoctor: '',
-        visitReason: 'Plain Visit',
-        urgency: 'Regular',
-        date: '',
-        time: ''
+        patient_id: patient_id || '',
+        phone: phone || '',
+        name: name || '',
+        surname: surname || '',
+        specialization: specialization ||'',
+        dedicatedDoctor: dedicatedDoctor || '',
+        visitReason: visitReason || 'Plain Visit',
+        urgency: urgency || 'Regular',
+        date: date ? new Date(date).toISOString().split('T')[0] : '',
+        time: time || ''
     };
 
 
@@ -123,15 +122,19 @@ export default AddVisitForm;
 AddVisitForm.propTypes = {
     visitFormRef: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
-    patientFind: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
+    visitDetails: PropTypes.shape({
+        patient_id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         surname: PropTypes.string.isRequired,
         phone: PropTypes.string.isRequired,
+        specialization: PropTypes.string,
+        dedicatedDoctor: PropTypes.string.isRequired,
+        visitReason: PropTypes.string,
+        urgency: PropTypes.string,
+        date: PropTypes.string.isRequired, // Adjust type if necessary
+        time: PropTypes.string.isRequired, // Adjust type if necessary
     }).isRequired,
 }
 
-// Данний компонент створює форму для додавання визиту. Отримує данні пацієнта: id, особисті дані та передає їх
-// у форму як початкові значення.
 // Bugs: При Edit Visit не всі поля форми підтягуються, в часності не підвантажуються спеціалісти та додаткові питання
 // Можна створити окрему форму

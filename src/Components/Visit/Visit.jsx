@@ -98,6 +98,7 @@ const Visit = (props) => {
             handleNewVisit();  // відкриваю форму візиту
             setPatientFind(patients[patient]);
 
+
         } else {  //якщо пацієнта не знайдено
             resetForm();    //очистка форми при невірному вводі
 
@@ -123,13 +124,13 @@ const Visit = (props) => {
             >
             {
                 isNewVisit
-                ?    <AddVisitForm  visitFormRef={visitFormRef} onSubmit={handleVisitSubmit} patientFind={patientFind}/>
+                ?    <AddVisitForm  visitFormRef={visitFormRef} onSubmit={handleVisitSubmit} patientFind={patientFind} />
                 :    <div className={styles.searchPatientWrapper}>
                         {
                             isNewPatient
                             ? <AddPatientForm formikRef={patientFormikRef} onSubmit={handlePatientSubmit} />
                             : <>
-                                    <SearchPatientForm searchFormRef={searchFormRef} onSubmit={handleSearchPatientSubmit}/>
+                                    <SearchPatientForm searchFormRef={searchFormRef} onSubmit={handleSearchPatientSubmit} />
                                     {
                                         patientStatus === 'failed'
                                             ? <p>{patientError}</p> // якщо пацієнти не дістали із редакса
@@ -157,3 +158,7 @@ Visit.propTypes = {
     setVisitPopUp: PropTypes.func,
     setPatientPopUp: PropTypes.func
 }
+
+//Компонент який задіюється при відкриванні вікна зі створення візиту. За замовчуванням відкривається пошук
+//пацієнта за тел. якщо знходить то передає данні про пацієнта до AddVisitForm. Інакше помилка або створення
+//нового пацієнта

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { useField, useFormikContext } from "formik"
 import PropTypes from "prop-types"
 import cn from "classnames"
@@ -9,14 +9,15 @@ import styles from "./CustomSelectableSubInput.module.scss"
 
 const CustomSelectableSubInput = (props) => {
     const {
-        // label,
-        // options,
+        name,
+        id,
+        label,
+        options,
         additionalOption,  //масив doctors
         onFieldDocs, //відфільтрований масив doctors, що певертається назад
         optionLabelKey,
         optionValueKey,
         onFieldAdd,
-        ...rest
     } = props;
 
 
@@ -26,7 +27,7 @@ const CustomSelectableSubInput = (props) => {
 
     useEffect(() => {
         //Обираю опцію із списку спеціалізації
-        const selectedOption = rest.options.find(option => option[optionLabelKey] === field.value);
+        const selectedOption = options.find(option => option[optionLabelKey] === field.value);
 
         //Якщо вибрана опція має questions, то викликаємо onFieldAdd та передаємо questions
         if (selectedOption && selectedOption.questions) {
@@ -49,13 +50,13 @@ const CustomSelectableSubInput = (props) => {
 
     return (
         <div className={styles.customSelectField}>
-            <label htmlFor={rest.id || rest.name} className={styles.labelSelectableInput}>
-                {rest.label || props.name}
+            <label htmlFor={id || name} className={styles.labelSelectableInput}>
+                {label || name}
                 <span className={error ? styles.asteriskSelectable : ""}>*</span>
             </label>
-            <select {...field} {...rest} className={cn(styles.selectField, { [styles.errorSelectField]: error })}>
+            <select {...field}  className={cn(styles.selectField, { [styles.errorSelectField]: error })}>
                 <option value="" disabled></option>
-                {rest.options.map((opt, index) => (
+                {options.map((opt, index) => (
                     <option key={opt[optionValueKey] ? opt[optionValueKey] : index} value={opt[optionLabelKey]}>
                         {opt[optionLabelKey]}
                     </option>
@@ -69,8 +70,13 @@ const CustomSelectableSubInput = (props) => {
 export default CustomSelectableSubInput;
 
 CustomSelectableSubInput.propTypes = {
+    name: PropTypes.string,
+    id: PropTypes.string,
     label: PropTypes.string,
     options: PropTypes.array,
+    additionalOption: PropTypes.array,
+    onFieldDocs: PropTypes.func,
+    onFieldAdd: PropTypes.func,
     optionLabelKey: PropTypes.string,
     optionValueKey: PropTypes.string
 }
