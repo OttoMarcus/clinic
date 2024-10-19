@@ -1,8 +1,7 @@
-import { useField, useFormikContext } from "formik"
+import { useField } from "formik"
 import PropTypes from "prop-types"
 import cn from "classnames"
 import styles from "./CustomSelectInput.module.scss"
-import React from "react";
 
 
 
@@ -46,9 +45,10 @@ CustomSelectInput.propTypes = {
     label: PropTypes.string,
     options: PropTypes.array,
     optionLabelKey: PropTypes.string,
-    optionValueKey: PropTypes.string
+    optionValueKey: PropTypes.string,
+    name: PropTypes.string
 }
 
 
 // поле select у формі може отримувати тільки обмежений та суворо визначений набір пропсів.
-// через що, додаткові пропси я деструктуризував а ті щ потребує select, передав далі до select через ...rest
+// через що, додаткові пропси я деструктуризував а ті щo потребує select, передав далі до select через ...rest

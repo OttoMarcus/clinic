@@ -1,7 +1,7 @@
 import {useRef, useContext} from "react"
 import PropTypes from "prop-types"
 import Modal from "../../Modal/ModalDefault/Modal"
-import AddVisitForm from "../../forms/AddVisitForm/AddVisitForm"
+import EditVisitForm from "../../forms/EditVisitForm/EditVisitForm"
 import delayPopTimer from "../../PopUp/delayPopTimer"
 
 import LanguagesContext from '../../../store/Context/LanguageContext/LanguagesContext'
@@ -19,11 +19,11 @@ import styles from "./VisitEdit.module.scss"
 const VisitEdit = (props) => {
 
     const {
-        setIsVisitEditActive,
+        visit,
         isVisitEditActive,
+        setIsVisitEditActive,
         setIsVisitEditPopUp,
-        setIsErrorVisitEditPopUp,
-        visit
+        setIsErrorVisitEditPopUp
     } = props;
 
 
@@ -41,13 +41,14 @@ const VisitEdit = (props) => {
     }
 
     const handleEdit = async (values) => {
-        try {
-            // const updatedVisit = {
-            //     id: visit._id,
-            //     ...values
-            // }
+        const updatedVisit = {
+            id: visit._id,
+            ...values
+        }
+    console.log(updatedVisit)
 
-           const response = await dispatch(updateVisit(values));  // передаємо значення з форми
+        try {
+           const response = await dispatch(updateVisit(updatedVisit));  // передаємо значення з форми
 
            if(response.meta.requestStatus === "fulfilled") {
                delayPopTimer(setIsVisitEditPopUp);
@@ -77,14 +78,12 @@ const VisitEdit = (props) => {
                 setIsModalActive={setIsVisitEditActive}
                 isModalClose={true}
             >
-                <AddVisitForm
-                    visitFormRef={visitEditRef}
+                <EditVisitForm
+                    visitEditRef={visitEditRef}
                     visitDetails={visit}
                     onSubmit={handleEdit}
                 />
-
             </Modal>
-
         </div>
     )
 }
@@ -92,9 +91,9 @@ const VisitEdit = (props) => {
 export default VisitEdit
 
 VisitEdit.propTypes = {
-    setIsVisitEditActive: PropTypes.func.isRequired,
+    visit: PropTypes.object.isRequired,
     isVisitEditActive: PropTypes.bool.isRequired,
+    setIsVisitEditActive: PropTypes.func.isRequired,
     setIsVisitEditPopUp: PropTypes.func.isRequired,
-    setIsErrorVisitEditPopUp: PropTypes.func.isRequired,
-    visit: PropTypes.object.isRequired
+    setIsErrorVisitEditPopUp: PropTypes.func.isRequired
 }

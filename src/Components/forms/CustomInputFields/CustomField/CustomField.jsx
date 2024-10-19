@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import {memo, useCallback} from 'react'
 import { useField } from 'formik'
 import PropTypes from 'prop-types'
 import { PatternFormat } from 'react-number-format' // Імпортуємо PatternFormat
@@ -9,17 +9,22 @@ import styles from './CustomField.module.scss'
 
 
 
-const CustomField = ({ type, patternProps, ...props }) => {
+const CustomField = ({ type = 'text', patternProps, disabled = false, ...props }) => {
     const [field, meta] = useField(props.name);
     const { touched, error } = meta;
 
-    const
-        inputElement = patternProps ? (
+    // Функція для генерації класів
+    const generateClassName = () =>
+        cn(styles.customInput, { [styles.errorField]: error });
+
+    // Функція для рендерингу інпуту з PatternFormat
+    const renderPatternFormatInput = useCallback(() => (
         <PatternFormat
             {...field}
             {...props}
-            {...patternProps} // Передаємо всі параметри PatternFormat через пропси
-            className={cn(styles.customInput, { [styles.errorField]: error })}
+            {...patternProps}
+            disabled={disabled}
+            className={generateClassName()}
             onValueChange={(values) => {
                 field.onChange({
                     target: {
@@ -29,15 +34,22 @@ const CustomField = ({ type, patternProps, ...props }) => {
                 });
             }}
         />
-    ) : (
+    ), [field, props, patternProps, disabled]);
+
+    // Функція для рендерингу стандартного інпуту
+    const renderStandardInput = useCallback(() => (
         <input
             type={type}
             {...props}
             {...field}
-            className={cn(styles.customInput, { [styles.errorField]: error })}
+            disabled={disabled} // Додаємо пропс disabled
+            className={generateClassName()}
             placeholder={props.placeholder}
         />
-    );
+    ), [field, props, disabled]);
+
+    // Вибір між PatternFormat або стандартним інпутом
+    const inputElement = patternProps ? renderPatternFormatInput() : renderStandardInput();
 
     return (
         <div className={styles.customField}>
@@ -48,18 +60,20 @@ const CustomField = ({ type, patternProps, ...props }) => {
             {inputElement}
             {touched && error && <p className={styles.error}>{meta.error}</p>}
         </div>
-    )
-}
+    );
+};
 
 export default memo(CustomField);
 
 CustomField.propTypes = {
     type: PropTypes.string,
     label: PropTypes.string,
-    name: PropTypes.string.isRequired, // Обов'язковий пропс
+    name: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
-    patternProps: PropTypes.object, // Додаємо patternProps як необов'язковий пропс
+    patternProps: PropTypes.object,
+    disabled: PropTypes.bool, // Додаємо пропс disabled
 };
+
 
 
 //Кастомний інпут, що дозволяє гнучко контролювати поле вводу.

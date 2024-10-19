@@ -3,39 +3,53 @@ import PropTypes from 'prop-types';
 import {Formik, Form} from 'formik'
 import CustomField from '../CustomInputFields/CustomField/CustomField.jsx';
 import CustomSelectableSubInput from '../CustomInputFields/CustomSelectableSubInput/CustomSelectableSubInput.jsx';
-import validationSchema from './validationSchema.js';
-import useSpecializations from '../../../helper/useSpecializations.js';
-import LanguagesContext from '../../../store/Context/LanguageContext/LanguagesContext.jsx';
-import { translation } from '../../../store/Context/LanguageContext/translation/translation.js';
-import styles from './AddVisitForm.module.scss';
-import CustomRadioGroup from "../CustomInputFields/CustomRadioGroup/CustomRadioGroup.jsx";
+import validationSchema from './validationSchema'
+import useSpecializations from '../../../helper/useSpecializations'
+import LanguagesContext from '../../../store/Context/LanguageContext/LanguagesContext'
+import { translation } from '../../../store/Context/LanguageContext/translation/translation'
+
+import CustomRadioGroup from "../CustomInputFields/CustomRadioGroup/CustomRadioGroup"
+import {useDispatch, useSelector} from "react-redux"
+import CustomSelectInput from "../CustomInputFields/CustomSelectInput/CustomSelectInput"
+
+import styles from '../AddVisitForm/AddVisitForm.module.scss'
 import useDoctorList from "../../../helper/useDoctorList.js";
-import {useDispatch, useSelector} from "react-redux";
+
 import {fetchDoctors} from "../../../store/Redux/Doctor/Thunk.js";
-import CustomSelectInput from "../CustomInputFields/CustomSelectInput/CustomSelectInput.jsx";
 
 
 
 
-const AddVisitForm = ({ visitFormRef, onSubmit, visitDetails }) => {
-    const {patient_id, name, surname, phone, specialization, dedicatedDoctor, visitReason, urgency, date, time} = visitDetails;
+const EditVisitForm = ({ visitEditRef, onSubmit, visitDetails }) => {
+    const {
+        patient_id,
+        name,
+        surname,
+        phone,
+        specialization,
+        dedicatedDoctor,
+        visitReason,
+        urgency,
+        date,
+        time
+    } = visitDetails;
 
-    const { lang } = useContext(LanguagesContext);
-    const { addVisitForm, selectDoctor } = translation[lang];
-
-    const specializations = useSpecializations();
+    const {lang} = useContext(LanguagesContext);
+    const {addVisitForm, selectDoctor} = translation[lang];
 
     const dispatch = useDispatch();
-    const doctors = useSelector(state => state.doctors.doctors);
-    const status = useSelector(state => state.doctors.status);
-    const error = useSelector(state => state.doctors.error);
+    const specializations = useSpecializations();
 
-    //Якщо в редаксі ще не підгружені лікарі то підгружаємо тут
+    const doctors = useDoctorList();
+    const status = useSelector(state => state.doctors.status);
+    // const doctors_error = useSelector(state => state.doctors.error);
+
     useEffect(() => {
         if (status === 'idle') {
             dispatch(fetchDoctors());
         }
     }, [status, dispatch]);
+
 
     const [additionalFields, setAdditionalFields] = useState([]);
     const [doctorList, setDoctorList] = useState([]);
@@ -73,17 +87,13 @@ const AddVisitForm = ({ visitFormRef, onSubmit, visitDetails }) => {
             initialValues={initialValues}
             onSubmit={onSubmit}
             validationSchema={validationSchema}
-            innerRef={visitFormRef}
+            innerRef={visitEditRef}
         >
             {(form) => (
                 <Form className={styles.visitForm}>
-                    <CustomField name="phone" id="phone" label={addVisitForm[0]} patternProps={{
-                        format: "+38 (0##) ###-##-##",
-                        mask: "_",
-                        allowEmptyFormatting: true,
-                    }} />
-                    <CustomField name="name" id="name" label={addVisitForm[1]} />
-                    <CustomField name="surname" id="surname" label={addVisitForm[2]} />
+                    <CustomField name="phone" id="phone" label={addVisitForm[0]} disabled={true} />
+                    <CustomField name="name" id="name" disabled={true} label={addVisitForm[1]} />
+                    <CustomField name="surname" id="surname" disabled={true} label={addVisitForm[2]} />
                     <CustomSelectableSubInput
                         name="specialization"
                         id="specialization"
@@ -117,10 +127,10 @@ const AddVisitForm = ({ visitFormRef, onSubmit, visitDetails }) => {
     );
 };
 
-export default AddVisitForm;
+export default EditVisitForm;
 
-AddVisitForm.propTypes = {
-    visitFormRef: PropTypes.object,
+EditVisitForm.propTypes = {
+    visitEditRef: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
     visitDetails: PropTypes.shape({
         patient_id: PropTypes.string.isRequired,
