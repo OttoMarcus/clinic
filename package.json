@@ -3,11 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+
   "scripts": {
-    "start": "vite preview --port $PORT",
+    "heroku-postbuild": "npm install && npm run build",
     "build": "vite build",
-    "prepare": "husky",
-    "heroku-postbuild": "npm install && npm run build"
+    "start": "vite preview --port $PORT"
   },
 
   "eslintConfig": {
