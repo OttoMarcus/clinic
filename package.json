@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "heroku-postbuild": "npm install && npm run build",
-    "build": "vite build",
-    "start": "vite preview --port $PORT"
+    "start": "vite build && node server.js",
+    "build": "vite build"
   },
   "eslintConfig": {
     "extends": [
