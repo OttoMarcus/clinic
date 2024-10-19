@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "start": "vite preview --port $PORT",
     "build": "vite build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "heroku-postbuild": "npm install && npm run build"
   },
+
   "eslintConfig": {
     "extends": [
       "airbnb",
@@ -47,5 +49,9 @@
     "vite": "^5.2.0",
     "vite-plugin-css-modules": "^0.0.1",
     "vite-plugin-sass": "^0.1.0"
+  },
+  "engines": {
+    "node": "20.17.0",
+    "npm": "10.9.0"
   }
 }
