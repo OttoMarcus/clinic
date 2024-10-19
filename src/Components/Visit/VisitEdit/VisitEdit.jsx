@@ -14,8 +14,6 @@ import styles from "./VisitEdit.module.scss"
 
 
 
-
-
 const VisitEdit = (props) => {
 
     const {
@@ -45,7 +43,7 @@ const VisitEdit = (props) => {
             id: visit._id,
             ...values
         }
-    console.log(updatedVisit)
+
 
         try {
            const response = await dispatch(updateVisit(updatedVisit));  // передаємо значення з форми

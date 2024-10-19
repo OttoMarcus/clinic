@@ -75,7 +75,7 @@ const HomePage = () => {
 
     useEffect(() => {
         setCardList(visits);
-    }, [visits]);
+    }, [visits, visitStatus]);
 
     const patientDetails = (newPatientID) => {
         try {
@@ -130,7 +130,6 @@ const HomePage = () => {
                             />
                         )
                     )}
-
                 </div>
 
             {visitStatus === 'succeeded' && cardList.length === 0 && <div className={styles.noVisits}><h3>No visits</h3></div>}
@@ -142,7 +141,6 @@ const HomePage = () => {
                         setIsPopUpActive={setIsErrorEditPatientPopUp} //ініціалізація для повідомлення про помилку редагування
                         isModalActive={isModalActive}
                         setIsModalActive={setIsModalActive}
-
                     />
             }
 
