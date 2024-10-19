@@ -66,6 +66,7 @@ const CustomField = ({ type = 'text', patternProps, disabled = false, ...props }
 export default memo(CustomField);
 
 CustomField.propTypes = {
+    id: PropTypes.string,
     type: PropTypes.string,
     label: PropTypes.string,
     name: PropTypes.string.isRequired,
